@@ -8,4 +8,6 @@ Gem::Specification.new do |s|
   s.email       = 'robert.kenny@bbc.co.uk'
   s.files       = ["lib/assured-runner.rb"]
   s.homepage    = 'https://github.com/kenoir/assured-runner-gem'
+  s.add_dependency 'rest-assured', '>= 1.1.9'
+  s.add_dependency 'rest-client', '>= 1.6.7'
 end

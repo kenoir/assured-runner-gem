@@ -1,17 +1,24 @@
 module AssuredRunner
   require 'rest-assured'
+  require 'rest-client'
   require 'yaml'
 
   class Runner 
 
     def run
       start_server
+      clear_server
       load_doubles_from_config
       wait_for_interrupt
     end
 
     def start_server
       RestAssured::Server.start(:port =>7899)
+    end
+
+    def clear_server
+      RestClient.delete "#{RestAssured::Server.address}/redirects/all"
+      RestClient.delete "#{RestAssured::Server.address}/doubles/all"
     end
 
     def load_doubles_from_config
@@ -28,7 +35,7 @@ module AssuredRunner
     def load_data_into_doubles( paths )
       paths.each do | path_uri, file_location |
         double_response = read_from_file(file_location)
-        RestAssured::Double.create(:fullpath => path_uri, :content => double_response)
+      RestAssured::Double.create(:fullpath => path_uri, :content => double_response)
       end
     end
 
