@@ -32,15 +32,15 @@ module AssuredRunner
     end
 
     private
-    def load_data_into_doubles( paths )
-      paths.each do | path_uri, file_location |
-        double_response = read_from_file(file_location)
-      RestAssured::Double.create(:fullpath => path_uri, :content => double_response)
+    def load_data_into_doubles(paths)
+      paths.each do | path_uri, path_parameters |
+        double_response = read_from_file(path_parameters['file_location'])
+      RestAssured::Double.create(:fullpath => path_uri, :content => double_response, :response_headers = > {'content-type': path_parameters['content-type']})
       end
     end
 
     private 
-    def read_from_file( location)
+    def read_from_file(location)
       file = File.open(location, "rb")
       contents = file.read
     end
