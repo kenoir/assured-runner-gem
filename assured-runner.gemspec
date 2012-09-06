@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'assured-runner'
-  s.version     = '0.0.1'
-  s.date        = '2012-08-31'
+  s.version     = '0.0.2'
+  s.date        = '2012-09-06'
   s.summary     = "Rest-assured runner"
   s.description = "Runner for REST-assured that loads double responses from the filesystem using a YAML config"
   s.authors     = ["Robert Kenny"]
